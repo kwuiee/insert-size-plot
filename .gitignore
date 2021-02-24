@@ -8,3 +8,8 @@ target/
 # Linux
 *.swp
 *.swo
+
+*.png
+*.PNG
+*.svg
+*.SVG
