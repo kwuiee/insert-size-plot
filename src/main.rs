@@ -290,7 +290,7 @@ fn cli(bam: &str, pic: &str, upper: &usize, format: &PicFormat) -> Result<()> {
 
     // Plot line.
     match format {
-        PicFormat::SVG => {
+        PicFormat::Svg => {
             let line = Plot::new(
                 data.into_iter()
                     .enumerate()
@@ -311,7 +311,7 @@ fn cli(bam: &str, pic: &str, upper: &usize, format: &PicFormat) -> Result<()> {
                 .save(pic)
                 .map_err(|_| Error::new(InvalidData, format!("Failed to write {}", pic)))?;
         }
-        PicFormat::PNG => {
+        PicFormat::Png => {
             let root = BitMapBackend::new(pic, (700, 610)).into_drawing_area();
             root.fill(&WHITE)
                 .map_err(|e| Error::new(ErrorKind::InvalidData, e))?;
@@ -361,16 +361,16 @@ fn cli(bam: &str, pic: &str, upper: &usize, format: &PicFormat) -> Result<()> {
 }
 
 enum PicFormat {
-    SVG,
-    PNG,
+    Svg,
+    Png,
 }
 
 impl PicFormat {
     fn from_str(v: &str) -> Result<Self> {
         if v.ends_with(".svg") || v.ends_with(".SVG") {
-            Ok(Self::SVG)
+            Ok(Self::Svg)
         } else if v.ends_with(".png") || v.ends_with(".PNG") {
-            Ok(Self::PNG)
+            Ok(Self::Png)
         } else {
             Err(Error::new(ErrorKind::InvalidData, "No such option."))
         }

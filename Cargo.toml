@@ -20,6 +20,6 @@ version = "^2.33.3"
 features = ["suggestions"]
 
 [profile.release]
-lto = "fat"
+lto = true
 codegen-units = 1
 panic = "abort"
